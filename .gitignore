@@ -1,0 +1,16 @@
+.classpath
+.project
+.settings
+.gradle/
+.errai/
+target/
+bin/
+build/
+deployments/
+war/
+src/main/webapp/WEB-INF/classes/
+src/main/gwt-unitCache/
+src/main/webapp/App/
+
+.DS_Store
+target
