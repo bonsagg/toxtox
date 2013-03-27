@@ -180,7 +180,7 @@
                <extraJvmArgs>-Xmx2048m -XX:CompileThreshold=7000 -XX:+AggressiveOpts -XX:+UseCompressedOops -XX:MaxPermSize=128M</extraJvmArgs>
                <logLevel>INFO</logLevel>
                <noServer>true</noServer>
-               <runTarget>http://localhost:8080/errai-ui-demo</runTarget>
+               <runTarget>http://localhost:8080/app-1.0.0-SNAPSHOT</runTarget>
                <soyc>false</soyc>
                <webappDirectory>src/main/webapp</webappDirectory>
             </configuration>
