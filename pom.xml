@@ -177,6 +177,7 @@
                </execution>
             </executions>
             <configuration>
+			   <extraJvmArgs>-Xmx2048m -XX:CompileThreshold=7000 -XX:MaxPermSize=128M</extraJvmArgs>
                <logLevel>INFO</logLevel>
                <noServer>true</noServer>
                <runTarget>http://localhost:8080/app-1.0.0-SNAPSHOT</runTarget>
