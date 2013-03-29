@@ -35,46 +35,62 @@ import com.google.gwt.user.client.ui.TextBox;
  * Main application entry point.
  */
 /*
- * The '#template' value tells Errai UI to use the specified Element from the HTML markup file (with data-field="template") as the root of this Composite component.
+ * The '#template' value tells Errai UI to use the specified Element from the
+ * HTML markup file (with data-field="template") as the root of this Composite
+ * component.
  */
 @Templated("#template")
 @EntryPoint
-public class App extends Composite
-{
-   /*
-    * Inject any Widget with a default constructor, bind to data-field "sendMessage".
-    */
-   @Inject
-   @DataField
-   private Button sendMessage;
+public class App extends Composite {
+	/*
+	 * Inject any Widget with a default constructor, bind to data-field
+	 * "sendMessage".
+	 */
+	@Inject
+	@DataField
+	private Button sendMessage;
 
-   /*
-    * Or create it yourself, and bind to data-field "messageText".
-    */
-   @DataField
-   private TextBox messageText = new TextBox();
+	/*
+	 * Or create it yourself, and bind to data-field "messageText".
+	 */
+	@DataField
+	private TextBox messageText = new TextBox();
 
-   @DataField
-   private HTMLPanel spotlights = new HTMLPanel("");
+	@DataField
+	private HTMLPanel spotlights = new HTMLPanel("");
+	
+	@DataField
+	private TextBox username = new TextBox();
+	
+	@DataField
+	private TextBox email = new TextBox();
 
-   /*
-    * Allows us to instantiate new Spotlight instances.
-    */
-   @Inject
-   Instance<Spotlight> spotlightInstance;
+	/*
+	 * Allows us to instantiate new Spotlight instances.
+	 */
+	@Inject
+	Instance<Spotlight> spotlightInstance;
 
-   @PostConstruct
-   public void setup()
-   {
-      sendMessage.addClickHandler(new ClickHandler() {
-         @Override
-         public void onClick(ClickEvent event)
-         {
-         }
-      });
+	@PostConstruct
+	public void setup() {
+		sendMessage.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				createSpotlight();
+			}
+		});
 
-      RootPanel.get().add(this);
-   }
+		RootPanel.get().add(this);
+	}
 
+	private void createSpotlight() {
+		Spotlight spotlight = spotlightInstance.get();
+		String name = username.getText();
+		String eml = email.getText();
+		spotlight.setTitle((name == null ? "Anonymous" : name));
+		spotlight.setContent((eml == null ? "" : "[ " + eml + " ]") + " "
+				+ messageText.getText());
+		spotlights.add(spotlight);
+	}
 
 }

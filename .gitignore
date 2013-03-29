@@ -11,6 +11,7 @@ war/
 src/main/webapp/WEB-INF/classes/
 src/main/gwt-unitCache/
 src/main/webapp/App/
+rebel.xml
 
 .DS_Store
 target
