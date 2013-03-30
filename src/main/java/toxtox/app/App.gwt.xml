@@ -10,6 +10,7 @@
    <inherits name="org.jboss.errai.databinding.DataBinding" />
    <inherits name="org.jboss.errai.enterprise.CDI" />
    <inherits name="org.jboss.errai.enterprise.Jaxrs" />
+   <inherits name="org.jboss.errai.ui.nav.Navigation"/>
 
    <!-- Testing only
       <set-property name="user.agent" value="safari,gecko1_8" />

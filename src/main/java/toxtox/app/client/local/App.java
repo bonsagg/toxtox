@@ -20,6 +20,7 @@ import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
 import org.jboss.errai.ioc.client.api.EntryPoint;
+import org.jboss.errai.ui.nav.client.local.Page;
 import org.jboss.errai.ui.shared.api.annotations.DataField;
 import org.jboss.errai.ui.shared.api.annotations.Templated;
 
@@ -40,7 +41,8 @@ import com.google.gwt.user.client.ui.TextBox;
  * component.
  */
 @Templated("#template")
-@EntryPoint
+//@EntryPoint
+@Page(startingPage=true)
 public class App extends Composite {
 	/*
 	 * Inject any Widget with a default constructor, bind to data-field
@@ -80,7 +82,7 @@ public class App extends Composite {
 			}
 		});
 
-		RootPanel.get().add(this);
+//		RootPanel.get().add(this);
 	}
 
 	private void createSpotlight() {
