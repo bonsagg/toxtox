@@ -1,9 +1,14 @@
 package toxtox.app.client.shared.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import org.jboss.errai.common.client.api.annotations.Portable;
@@ -29,7 +34,13 @@ public class User extends AbstractEntity {
 	private String userName;
 	@NotNull
 	private String password;
-
+	@ManyToMany
+	private List<Game> playingGames = new ArrayList<Game>();
+	@OneToMany(mappedBy="receiver")
+	private List<Message> receivedMessages = new ArrayList<Message>();
+	@OneToMany(mappedBy="sender")
+	private List<Message> sendMessages = new ArrayList<Message>();
+	
 	public String getFirstName() {
 		return firstName;
 	}
