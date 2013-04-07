@@ -13,6 +13,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import toxtox.app.client.shared.entities.AbstractEntity;
+import toxtox.app.client.shared.entities.Game;
+import toxtox.app.client.shared.entities.Message;
 import toxtox.app.client.shared.entities.User;
 import toxtox.app.server.producer.LoggerProducer;
 import toxtox.app.server.services.api.UserService;
@@ -27,7 +29,7 @@ public class DBUserServiceTest {
 	public static JavaArchive createDeployment() {
 		return ShrinkWrap
 				.create(JavaArchive.class)
-				.addClasses(AbstractEntity.class, User.class,
+				.addClasses(AbstractEntity.class, User.class, Game.class, Message.class,
 						LoggerProducer.class, UserService.class,
 						DBUserService.class)
 				.addAsResource("test-persistence.xml",
