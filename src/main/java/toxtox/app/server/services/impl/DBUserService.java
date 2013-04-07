@@ -1,15 +1,28 @@
 package toxtox.app.server.services.impl;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.config.IniSecurityManagerFactory;
+import org.apache.shiro.subject.Subject;
+import org.apache.shiro.util.Factory;
+import org.apache.shiro.mgt.SecurityManager;
 import org.slf4j.Logger;
 
 import toxtox.app.client.shared.entities.User;
+import toxtox.app.client.shared.qualifier.UserLogin;
 import toxtox.app.server.services.api.UserService;
 
 /**
@@ -27,6 +40,19 @@ public class DBUserService implements UserService {
 	
 	@Inject
 	private Logger logger;
+	
+	@PostConstruct
+	public void init() {
+
+//	    //1.
+//	    Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
+//
+//	    //2.
+//	    SecurityManager securityManager = factory.getInstance();
+//
+//	    //3.
+//	    SecurityUtils.setSecurityManager(securityManager);
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -56,6 +82,43 @@ public class DBUserService implements UserService {
 		}else{
 			em.merge(user);
 			logger.info("merged user: " + user.getUserName());
+		}
+	}
+	
+	@Override
+	public void loginUser(@Observes @UserLogin User user){
+		
+	    //1.
+	    Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
+
+	    //2.
+	    SecurityManager securityManager = factory.getInstance();
+
+	    //3.
+	    SecurityUtils.setSecurityManager(securityManager);
+		
+		System.out.println("User login!");
+		Subject currentUser = SecurityUtils.getSubject();
+		if ( !currentUser.isAuthenticated() ) {
+		    //collect user principals and credentials in a gui specific manner 
+		    //such as username/password html form, X509 certificate, OpenID, etc.
+		    //We'll use the username/password example here since it is the most common.
+		    //(do you know what movie this is from? ;)
+		    UsernamePasswordToken token = new UsernamePasswordToken(user.getUserName(), user.getPassword());
+		    //this is all you have to do to support 'remember me' (no config - built in!):
+		    token.setRememberMe(true);
+		    try {
+		        currentUser.login( token );
+		        //if no exception, that's it, we're done!
+		    } catch ( UnknownAccountException uae ) {
+		    	System.out.println("User not found!");
+		    } catch ( IncorrectCredentialsException ice ) {
+		    	System.out.println("PW wrong!");
+		    } catch ( LockedAccountException lae ) {
+		        System.out.println("Locked account!");
+		    } catch ( AuthenticationException ae ) {
+		    	System.out.println("Some error!");
+		    }
 		}
 	}
 

@@ -38,7 +38,8 @@ public abstract class AbstractEntity implements Serializable {
 
 	public void setCreationTimestamp(Date creationTimestamp) {
 		if(this.creationTimestamp != null) {
-			throw new PersistenceException("CreationTimestamp not updatable!");
+//			my gwt-compiler fails here. (Philipp)
+//			throw new PersistenceException("CreationTimestamp not updatable!");
 		}
 
 		this.creationTimestamp = creationTimestamp;

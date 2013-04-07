@@ -40,4 +40,7 @@ public interface UserService {
 	 * @param user
 	 */
 	public void deleteUser(User user);
+
+	public void loginUser(User user);
+	
 }

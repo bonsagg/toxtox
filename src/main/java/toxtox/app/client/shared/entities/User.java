@@ -6,8 +6,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
+import org.jboss.errai.common.client.api.annotations.Portable;
+import org.jboss.errai.enterprise.client.cdi.api.Conversational;
+
 
 @Entity
+@Conversational
+@Portable
 @NamedQueries({ @NamedQuery(name = User.FIND_USER_BY_USERNAME, query = "SELECT u FROM User u where u.userName = :userName") })
 public class User extends AbstractEntity {
 

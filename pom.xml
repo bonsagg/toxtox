@@ -18,6 +18,7 @@
       <javaee.version>3.0.1.Final</javaee.version>
       <version.specs>3.0.1.Final</version.specs>
       <version.junit>4.10</version.junit>
+      <shiro.version>1.2.1</shiro.version>
 		<version.arquillian>1.0.2.Final</version.arquillian>
 		<version.arquillian.container>1.0.2.Final</version.arquillian.container>
    </properties>
@@ -48,6 +49,21 @@
 	</dependencyManagement>
    
    <dependencies>
+	 	<dependency>
+		  <groupId>org.apache.shiro</groupId>
+		  <artifactId>shiro-core</artifactId>
+		  <version>${shiro.version}</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.apache.shiro</groupId>
+		  <artifactId>shiro-web</artifactId>
+		  <version>${shiro.version}</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.apache.shiro</groupId>
+		  <artifactId>shiro-aspectj</artifactId>
+		  <version>${shiro.version}</version>
+		</dependency>
       <dependency>
          <groupId>com.google.gwt</groupId>
          <artifactId>gwt-user</artifactId>

@@ -30,6 +30,24 @@ public class DBUserServiceTest {
 				.addClasses(AbstractEntity.class, User.class,
 						LoggerProducer.class, UserService.class,
 						DBUserService.class)
+				.addPackages(true, "org.apache.shiro")
+				.addClass(org.aspectj.lang.NoAspectBoundException.class)
+				.addClass(org.aspectj.lang.JoinPoint.class)
+				.addClass(org.aspectj.lang.Signature.class)
+				.addClass(org.aspectj.lang.reflect.SourceLocation.class)
+//				.addPackages(true, "org.aspectj")
+//				.addClass(org.apache.shiro.SecurityUtils.class)
+//				.addClass(org.apache.shiro.ShiroException.class)
+//				.addClass(org.apache.shiro.authc.AuthenticationToken.class)
+//				.addClass(org.apache.shiro.authc.CredentialsException.class)
+//				.addClass(org.apache.shiro.authc.LockedAccountException.class)
+//				.addClass(org.apache.shiro.authc.UnknownAccountException.class)
+//				.addClass(org.apache.shiro.authc.AuthenticationException.class)
+//				.addClass(org.apache.shiro.authc.IncorrectCredentialsException.class)
+//				.addClass(org.apache.shiro.authc.UsernamePasswordToken.class)
+//				.addClass(org.apache.shiro.authc.HostAuthenticationToken.class)
+//				.addClass(org.apache.shiro.authc.AccountException.class)
+//				.addClass(org.apache.shiro.authc.DisabledAccountException.class)
 				.addAsResource("test-persistence.xml",
 						"META-INF/persistence.xml")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
