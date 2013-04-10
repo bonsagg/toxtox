@@ -16,19 +16,13 @@
 package toxtox.app.client.local;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
 import org.jboss.errai.ui.nav.client.local.Page;
-import org.jboss.errai.ui.shared.api.annotations.DataField;
 import org.jboss.errai.ui.shared.api.annotations.Templated;
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HTMLPanel;
-import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.RootPanel;
 
 /**
  * Main application entry point.
@@ -42,55 +36,13 @@ import com.google.gwt.user.client.ui.TextBox;
 //@EntryPoint
 @Page(startingPage=true)
 public class App extends Composite {
-	/*
-	 * Inject any Widget with a default constructor, bind to data-field
-	 * "sendMessage".
-	 */
 	@Inject
-	@DataField
-	private Button sendMessage;
-
-	/*
-	 * Or create it yourself, and bind to data-field "messageText".
-	 */
-	@DataField
-	private TextBox messageText = new TextBox();
-
-	@DataField
-	private HTMLPanel spotlights = new HTMLPanel("");
-	
-	@DataField
-	private TextBox username = new TextBox();
-	
-	@DataField
-	private TextBox email = new TextBox();
-
-	/*
-	 * Allows us to instantiate new Spotlight instances.
-	 */
-	@Inject
-	Instance<Spotlight> spotlightInstance;
+	private Header header;
 
 	@PostConstruct
 	public void setup() {
-		sendMessage.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent event) {
-				createSpotlight();
-			}
-		});
-
-//		RootPanel.get().add(this);
+		
+		//RootPanel.get().add(header);
+		
 	}
-
-	private void createSpotlight() {
-		Spotlight spotlight = spotlightInstance.get();
-		String name = username.getText();
-		String eml = email.getText();
-		spotlight.setTitle((name == null ? "Anonymous" : name));
-		spotlight.setContent((eml == null ? "" : "[ " + eml + " ]") + " "
-				+ messageText.getText());
-		spotlights.add(spotlight);
-	}
-
 }
