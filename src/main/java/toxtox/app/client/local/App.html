@@ -39,27 +39,54 @@ body {
 
 	<div data-field="template">
 
-		<div class="row">
-			<div class="span3">
-				<ul class="nav nav-tabs nav-stacked">
-					<li><a href="#">Test1</a></li>
-					<li><a href="#">Test2</a></li>
-				</ul>
-			</div>
-
-			<div class="span8 offset4">
-				<div class="hero-unit">
-					<h1>Heading</h1>
-					<p>Tagline</p>
-					<p>
-						<a class="btn btn-primary btn-large"> Learn more </a>
-					</p>
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="btn btn-navbar" data-toggle="collapse"
+						data-target=".navbar-responsive-collapse"> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+					</a> <a class="brand" href="#">ToxTox</a>
+					<div class="nav-collapse collapse navbar-responsive-collapse">
+						<ul class="nav">
+							<li class="active"><a href="#">Home</a></li>
+							<li><a href="#">About</a></li>
+							<li><a href="#">Impressum</a></li>
+						</ul>
+						<ul class="nav pull-right">
+							<li class="dropdown">
+								<a class="dropdown-toggle" role="menu" data-toggle="dropdown" href="#"> Anmelden <b class="caret"></b></a>
+								<div class="dropdown-menu">
+									<form action="">
+									<fieldset>
+										<label style="margin: 10px 0 0 10px;">Username</label><input type="text" style="margin: 0 10px;" />
+										<label style="margin: 10px 0 0 10px;">Password</label><input type="text" style="margin: 0 10px;" />
+									</fieldset>
+										<button style="float: right; margin: 10px;">Login</button>
+									</form>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!-- /.nav-collapse -->
 				</div>
 			</div>
+			<!-- /navbar-inner -->
 		</div>
-
-	</div>
-	<!-- /container -->
+		<div class="container">
+			<div class="hero-unit">
+				<h2>ToxTox</h2>
+				<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna
+					aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
+					duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+					sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+					consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+					ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+					eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+					gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+			</div>
+		</div>
 	</div>
 
 	<!-- Le javascript
@@ -67,6 +94,11 @@ body {
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="http://twitter.github.com/bootstrap/assets/js/jquery.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$('.dropdown-menu').find('form').click(function (e) {
+		    e.stopPropagation();
+		 });
+	</script>
 
 </body>
 </html>

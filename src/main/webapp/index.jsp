@@ -40,20 +40,6 @@
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="<%= contextPath %>/js/jquery.min.js"></script>
-	<script src="<%= contextPath %>/bootstrap/js/bootstrap-transition.js"></script>
-	<script src="<%= contextPath %>/bootstrap/js/bootstrap-alert.js"></script>
-
-	<script src="<%= contextPath %>/bootstrap/js/bootstrap-modal.js"></script>
-	<script src="<%= contextPath %>/bootstrap/js/bootstrap-dropdown.js"></script>
-	<script src="<%= contextPath %>/bootstrap/js/bootstrap-scrollspy.js"></script>
-	<script src="<%= contextPath %>/bootstrap/js/bootstrap-tab.js"></script>
-	<script src="<%= contextPath %>/bootstrap/js/bootstrap-tooltip.js"></script>
-	<script src="<%= contextPath %>/bootstrap/js/bootstrap-popover.js"></script>
-
-	<script src="<%= contextPath %>/bootstrap/js/bootstrap-button.js"></script>
-	<script src="<%= contextPath %>/bootstrap/js/bootstrap-collapse.js"></script>
-	<script src="<%= contextPath %>/bootstrap/js/bootstrap-carousel.js"></script>
-	<script src="<%= contextPath %>/bootstrap/js/bootstrap-typeahead.js"></script>
-
+	<script src="<%= contextPath %>/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

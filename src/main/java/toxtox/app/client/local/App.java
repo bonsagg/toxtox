@@ -42,7 +42,7 @@ public class App extends Composite {
 	@PostConstruct
 	public void setup() {
 		
-		//RootPanel.get().add(header);
+		RootPanel.get().add(header);
 		
 	}
 }
