@@ -4,11 +4,14 @@ import javax.inject.Inject;
 
 import junit.framework.Assert;
 
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -55,6 +58,13 @@ public class DBUserServiceTest {
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
 	}
 
+	@After
+	public void tearDown(){
+		
+		dbUserService.logout();
+		
+	}
+	
 	private User createUser(String firstName, String lastName, String userName,
 			String password) {
 		User user = new User();
@@ -119,6 +129,26 @@ public class DBUserServiceTest {
 		
 		exist = dbUserService.existsUsername("freeUsername");
 		Assert.assertFalse(exist);
+	}
+	
+	@Test
+	public void testLoginUserSuccess() {
+		User user = createUser("Test", "Man", "lonestarr", "vespa");
+		dbUserService.loginUser(user);
+	}
+	
+	@Test(expected=Exception.class)
+	public void testLoginUserWrongCredentials() {
+
+		User user = createUser("Test", "Man", "lonestarr", "vespawrong");
+		dbUserService.loginUser(user);
+	}
+	
+	@Test(expected=Exception.class)
+	public void testLoginUserNoSuchUser() {
+
+		User user = createUser("Test", "Man", "lonestarrrrrrr", "vespa");
+		dbUserService.loginUser(user);
 	}
 
 }
