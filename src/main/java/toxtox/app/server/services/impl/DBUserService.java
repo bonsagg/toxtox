@@ -44,14 +44,11 @@ public class DBUserService implements UserService {
 	@PostConstruct
 	public void init() {
 
-//	    //1.
-//	    Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
-//
-//	    //2.
-//	    SecurityManager securityManager = factory.getInstance();
-//
-//	    //3.
-//	    SecurityUtils.setSecurityManager(securityManager);
+	    //init Shiro
+	    Factory<SecurityManager> factory = new IniSecurityManagerFactory("src/main/resources/shiro.ini");
+	    SecurityManager securityManager = factory.getInstance();
+	    SecurityUtils.setSecurityManager(securityManager);
+	    
 	}
 
 	/*
@@ -88,16 +85,6 @@ public class DBUserService implements UserService {
 	@Override
 	public void loginUser(@Observes @UserLogin User user){
 		
-	    //1.
-	    Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
-
-	    //2.
-	    SecurityManager securityManager = factory.getInstance();
-
-	    //3.
-	    SecurityUtils.setSecurityManager(securityManager);
-		
-		System.out.println("User login!");
 		Subject currentUser = SecurityUtils.getSubject();
 		if ( !currentUser.isAuthenticated() ) {
 		    //collect user principals and credentials in a gui specific manner 
@@ -108,17 +95,30 @@ public class DBUserService implements UserService {
 		    //this is all you have to do to support 'remember me' (no config - built in!):
 		    token.setRememberMe(true);
 		    try {
-		        currentUser.login( token );
+		        currentUser.login(token);
 		        //if no exception, that's it, we're done!
 		    } catch ( UnknownAccountException uae ) {
 		    	System.out.println("User not found!");
+		    	throw uae;
 		    } catch ( IncorrectCredentialsException ice ) {
 		    	System.out.println("PW wrong!");
+		    	throw ice;
 		    } catch ( LockedAccountException lae ) {
 		        System.out.println("Locked account!");
 		    } catch ( AuthenticationException ae ) {
 		    	System.out.println("Some error!");
 		    }
+		}
+		
+	}
+	
+	@Override
+	public void logout() {
+		
+		Subject currentUser = SecurityUtils.getSubject();
+		
+		if (currentUser.isAuthenticated()) {
+			currentUser.logout();
 		}
 	}
 

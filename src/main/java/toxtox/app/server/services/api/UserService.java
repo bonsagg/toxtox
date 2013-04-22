@@ -42,5 +42,7 @@ public interface UserService {
 	public void deleteUser(User user);
 
 	public void loginUser(User user);
+
+	public void logout();
 	
 }
