@@ -15,6 +15,7 @@
 <!-- Le styles -->
 <link href="<%= contextPath %>/bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="<%= contextPath %>/css/application.css" rel="stylesheet">
+<link href="<%= contextPath %>/css/toxtox.css" rel="stylesheet">
 <link href="<%= contextPath %>/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
 <!-- Le fav and touch icons -->

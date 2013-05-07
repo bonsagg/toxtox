@@ -6,10 +6,12 @@ import org.jboss.errai.ui.shared.api.annotations.Templated;
 
 import com.google.gwt.user.client.ui.Composite;
 
-@Templated("HeaderTemplate.html")
-public class Header extends Composite{
-
+@Templated("FooterTemplate.html")
+public class Footer extends Composite{
+	
 	@PostConstruct
 	public void init(){
+		
 	}
+
 }

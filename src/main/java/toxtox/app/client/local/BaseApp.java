@@ -16,7 +16,7 @@ public class BaseApp {
  
 	@PostConstruct
 	public void clientMain() {
-		RootPanel.get().add(navigation.getContentPanel());
+		RootPanel.get("rootPanel").add(navigation.getContentPanel());
 	}
 
 }

@@ -19,10 +19,10 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.jboss.errai.ui.nav.client.local.Page;
+import org.jboss.errai.ui.shared.api.annotations.DataField;
 import org.jboss.errai.ui.shared.api.annotations.Templated;
 
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.RootPanel;
 
 /**
  * Main application entry point.
@@ -32,17 +32,24 @@ import com.google.gwt.user.client.ui.RootPanel;
  * HTML markup file (with data-field="template") as the root of this Composite
  * component.
  */
-@Templated("#template")
-//@EntryPoint
+@Templated
 @Page(startingPage=true)
 public class App extends Composite {
-	@Inject
-	private Header header;
 
+	@Inject
+	@DataField
+	private Header header;
+	
+	@Inject
+	@DataField
+	private Content content;
+	
+	@Inject
+	@DataField
+	private Footer footer;
+	
 	@PostConstruct
 	public void setup() {
-		
-		RootPanel.get().add(header);
 		
 	}
 }
