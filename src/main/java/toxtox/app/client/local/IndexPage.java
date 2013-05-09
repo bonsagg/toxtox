@@ -32,21 +32,13 @@ import com.google.gwt.user.client.ui.Composite;
  * HTML markup file (with data-field="template") as the root of this Composite
  * component.
  */
-@Templated
-@Page(startingPage=true)
-public class App extends Composite {
-
-	@Inject
-	@DataField
-	private Header header;
+@Templated("PageLayout.html")
+@Page(startingPage=true, path="index")
+public class IndexPage extends PageLayout {
 	
 	@Inject
 	@DataField
 	private Content content;
-	
-	@Inject
-	@DataField
-	private Footer footer;
 	
 	@PostConstruct
 	public void setup() {
